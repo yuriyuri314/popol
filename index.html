@@ -815,6 +815,40 @@
       color: var(--text);
     }
 
+    .drawer-img-wrap {
+      width: 100%;
+      height: 150px;
+      border: 1px solid var(--text);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--bg);
+      transition: border-color var(--transition);
+    }
+
+    .drawer-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .overlay-img-wrap {
+      width: 100%;
+      height: 280px;
+      border: 1px solid var(--text);
+      overflow: hidden;
+      margin-bottom: 2rem;
+      background: var(--card-bg);
+      transition: border-color var(--transition);
+    }
+
+    .overlay-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
     /* ── SKILLS ── */
     #skills {
       background: var(--bg);
@@ -1797,6 +1831,7 @@
         subtitle: '2025 · 디지털인문예술 · 전시 기획',
         tags: ['전시 기획', '인터랙티브 경험', '공간 디자인'],
         overview: 'Netflix 오리지널 콘텐츠의 세계관을 오프라인 공간으로 확장하는 몰입형 체험 전시 콘셉트. 관람객이 이야기 속 주인공이 되는 경험을 설계했습니다.',
+        img: 'p1.png',
         points: [
           '10개 슬라이드, 10분 발표 형식으로 기획안 완성',
           '전시 포스터 디자인 — 여러 차례 이터레이션 진행',
@@ -1810,6 +1845,7 @@
         subtitle: '2025 · 디지털인문예술 · 접근성 · 7인 팀 프로젝트',
         tags: ['UX 기획', '접근성', '모바일 웹'],
         overview: '"누구에게나 열려있는 무대를 위한 앱"<br>공연 예술 공간에서 장애인, 고령자, 외국인 등 다양한 접근성 필요를 가진 관람객을 위한 모바일 웹 애플리케이션.',
+        img: 'p2.png',
         points: [
           '① 3D 공연장 안내지도(S-MAP 연동)',
           '② AR 길안내(배리어프리 경로)',
@@ -1828,6 +1864,7 @@
         subtitle: '2025 · 디지털인문예술 · 브랜드 기획',
         tags: ['디지털인문예술', '브랜드 기획'],
         overview: '바쁜 20~30대를 위한 하루 3끼 모듈형 뉴트리션 시스템 브랜드 기획. Morning(Energy·800kcal) / Noon(Balance·950kcal) / Night(Recovery·650kcal) 루틴 중심 설계.',
+        img: 'p3.png',
         points: [
           '핵심 차별점: 단순 식사 대체가 아닌 하루 루틴 중심, 직관적 모듈 시스템, AI 추천·구독·건강 데이터 확장 가능성',
           '도구: ChatGPT(컨셉·코드 생성), Antigravity(코드 수정), GitHub(버전 관리), Vercel(배포)'
@@ -1840,6 +1877,7 @@
         subtitle: '2025 · 노인복지학 · 학술 연구',
         tags: ['노인복지학', '학술 연구'],
         overview: '고령화 사회에서 지역사회 기반 노인 돌봄 서비스의 현황과 과제를 분석한 연구 논문. 통계청 2023 장래인구추계, 보건복지부 2023 노인실태조사, 2024 지역사회 통합 돌봄 지원법을 근거로 작성되었습니다.',
+        img: 'p4.png',
         points: [
           '통계청 2023 장래인구추계 활용 — 고령화 현황 수치 근거 확보',
           '보건복지부 2023 노인실태조사 인용 — 서비스 이용 실태 분석',
@@ -1895,6 +1933,11 @@
                   ${p.techStack ? `<div class="drawer-tech">Tools: ${p.techStack}</div>` : ''}
                 </div>
                 <div class="drawer-right">
+                  ${p.img ? `
+                    <div class="drawer-img-wrap" id="img-wrap-${id}">
+                      <img src="${p.img}" alt="${p.title}" class="drawer-img" onerror="document.getElementById('img-wrap-${id}').style.display='none';">
+                    </div>
+                  ` : ''}
                   <div class="drawer-tags">
                     ${p.tags.map(t => `<span class="drawer-tag">${t}</span>`).join('')}
                   </div>
@@ -1944,7 +1987,17 @@
         <p class="overlay-subtitle">${p.subtitle}</p>
       `;
 
-      let bodyContent = `
+      let bodyContent = '';
+
+      if (p.img) {
+        bodyContent += `
+          <div class="overlay-img-wrap" id="overlay-img-wrap-${id}">
+            <img src="${p.img}" alt="${p.title}" class="overlay-img" onerror="document.getElementById('overlay-img-wrap-${id}').style.display='none';">
+          </div>
+        `;
+      }
+
+      bodyContent += `
         <p class="overlay-section-label">개요</p>
         <p style="font-size:0.95rem; line-height:1.7; opacity:0.8">${p.overview}</p>
       `;
