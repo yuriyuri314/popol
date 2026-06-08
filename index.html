@@ -585,6 +585,21 @@
       transform: rotateY(0deg);
     }
 
+    .taste-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      opacity: 0.35;
+      text-transform: uppercase;
+      align-self: flex-start;
+      margin-top: 1rem;
+      transition: opacity var(--transition);
+    }
+
+    .taste-card:hover .taste-hint {
+      opacity: 0.75;
+    }
+
     .taste-back {
       transform: rotateY(180deg);
       font-size: 0.9rem;
@@ -912,6 +927,8 @@
       position: absolute;
       left: 0;
       top: 0;
+      width: 0%;
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
     .skill-bar-fill.rust {
@@ -1076,6 +1093,11 @@
       color: #9C9589;
       text-transform: uppercase;
       margin-bottom: 0.4rem;
+      transition: color 0.4s var(--transition);
+    }
+
+    .postcard-group:focus-within label {
+      color: var(--accent);
     }
 
     .postcard-input {
@@ -1088,7 +1110,7 @@
       color: inherit;
       width: 100%;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.4s var(--transition);
     }
 
     .postcard-input:focus {
@@ -1530,6 +1552,7 @@
                 <p class="taste-cat">Music</p>
                 <p class="taste-val">분위기 있는 장르들 수집 중</p>
               </div>
+              <span class="taste-hint">TAP TO FLIP ↺</span>
             </div>
             <div class="taste-back">
               재즈, 시티팝, 인디 포크 등 공간의 공기를 채우는 따뜻하고 감성적인 소리를 좋아합니다.
@@ -1549,6 +1572,7 @@
                 <p class="taste-cat">Fashion</p>
                 <p class="taste-val">힙 · 스포티 니치 브랜드</p>
               </div>
+              <span class="taste-hint">TAP TO FLIP ↺</span>
             </div>
             <div class="taste-back">
               정형화되지 않은 실루엣과 브랜드 고유의 확고한 철학을 담은 독립 디자이너 레이블을 선호합니다.
@@ -1568,6 +1592,7 @@
                 <p class="taste-cat">Space</p>
                 <p class="taste-val">조용한 카페 나만의 루틴</p>
               </div>
+              <span class="taste-hint">TAP TO FLIP ↺</span>
             </div>
             <div class="taste-back">
               햇살이 잘 드는 아늑한 구석진 나무 테이블에서 혼자 책을 읽고 생각을 기록하는 시간을 좋아합니다.
@@ -1587,6 +1612,7 @@
                 <p class="taste-cat">Mood</p>
                 <p class="taste-val">따뜻하고 단단한 감각</p>
               </div>
+              <span class="taste-hint">TAP TO FLIP ↺</span>
             </div>
             <div class="taste-back">
               부드러운 주황빛 조명과 묵직한 가죽 책장처럼, 차분한 외면에 따뜻하고 깊은 주관을 지향합니다.
@@ -1606,6 +1632,7 @@
                 <p class="taste-cat">People</p>
                 <p class="taste-val">취향이 비슷한 사람들과 느슨하고 진한 연결</p>
               </div>
+              <span class="taste-hint">TAP TO FLIP ↺</span>
             </div>
             <div class="taste-back">
               서로의 개성을 존중하고 취향의 깊이를 나누며, 삶에 잔잔한 온기와 영감을 주는 건강한 유대를 소중히 여깁니다.
@@ -1645,25 +1672,25 @@
         <div class="skill-item">
           <span class="skill-name">사회보장 정책 분석</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:85%"></div>
+            <div class="skill-bar-fill" data-level="85%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">노인복지 서비스 이해</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:80%"></div>
+            <div class="skill-bar-fill" data-level="80%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">비판적 문헌 분석</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:75%"></div>
+            <div class="skill-bar-fill" data-level="75%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">사회적 고립 · 지역사회 케어</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:70%"></div>
+            <div class="skill-bar-fill" data-level="70%" style="width:0%"></div>
           </div>
         </div>
       </div>
@@ -1674,25 +1701,25 @@
         <div class="skill-item">
           <span class="skill-name">전시 콘셉트 기획</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill rust" style="width:88%"></div>
+            <div class="skill-bar-fill rust" data-level="88%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">UX 서비스 기획</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill rust" style="width:80%"></div>
+            <div class="skill-bar-fill rust" data-level="80%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">발표 · 스크립트 작성</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill rust" style="width:82%"></div>
+            <div class="skill-bar-fill rust" data-level="82%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">접근성 디자인 사고</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill rust" style="width:75%"></div>
+            <div class="skill-bar-fill rust" data-level="75%" style="width:0%"></div>
           </div>
         </div>
       </div>
@@ -1703,25 +1730,25 @@
         <div class="skill-item">
           <span class="skill-name">학술 보고서 작성</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:85%"></div>
+            <div class="skill-bar-fill" data-level="85%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">기사 · 미디어 비평</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:78%"></div>
+            <div class="skill-bar-fill" data-level="78%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">브랜드 스토리텔링</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:72%"></div>
+            <div class="skill-bar-fill" data-level="72%" style="width:0%"></div>
           </div>
         </div>
         <div class="skill-item">
           <span class="skill-name">한국어 편집 · 교열</span>
           <div class="skill-bar-track">
-            <div class="skill-bar-fill" style="width:80%"></div>
+            <div class="skill-bar-fill" data-level="80%" style="width:0%"></div>
           </div>
         </div>
       </div>
@@ -2171,7 +2198,28 @@
       // 3. Set up fade-up transitions
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-      // 4. Reveal hero with micro-delay
+      // 4. Set up skill bars scroll animation
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const fills = entry.target.querySelectorAll('.skill-bar-fill');
+            fills.forEach(fill => {
+              const targetWidth = fill.getAttribute('data-level');
+              if (targetWidth) {
+                fill.style.width = targetWidth;
+              }
+            });
+            skillObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      const skillsGrid = document.querySelector('.skills-grid');
+      if (skillsGrid) {
+        skillObserver.observe(skillsGrid);
+      }
+
+      // 5. Reveal hero with micro-delay
       setTimeout(() => {
         document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
       }, 100);
