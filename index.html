@@ -26,6 +26,43 @@
       --charcoal-mid: #444441;
       --muted: #7A7870;
       --border: rgba(44, 44, 42, 0.12);
+
+      /* Dynamic Theme Variables */
+      --bg: var(--cream);
+      --bg-dark: var(--cream-dark);
+      --bg-mid: var(--cream-mid);
+      --text: var(--charcoal);
+      --text-mid: var(--charcoal-mid);
+      --nav-bg: rgba(245, 240, 232, 0.85);
+      --shadow: rgba(0, 0, 0, 0.05);
+      --hero-bg-color: rgba(138, 158, 138, 0.08);
+      --transition: 0.3s ease;
+    }
+
+    [data-theme="sage"] {
+      --bg: #223022;
+      --bg-dark: #192419;
+      --bg-mid: #2c3e2c;
+      --text: #F5F0E8;
+      --text-mid: #EDE6D6;
+      --nav-bg: rgba(34, 48, 34, 0.85);
+      --border: rgba(245, 240, 232, 0.12);
+      --muted: #A3B5A3;
+      --shadow: rgba(0, 0, 0, 0.2);
+      --hero-bg-color: rgba(245, 240, 232, 0.05);
+    }
+
+    [data-theme="noir"] {
+      --bg: #151515;
+      --bg-dark: #0D0D0D;
+      --bg-mid: #222222;
+      --text: #E5E0D8;
+      --text-mid: #C8C3B9;
+      --nav-bg: rgba(21, 21, 21, 0.85);
+      --border: rgba(245, 240, 232, 0.1);
+      --muted: #8E8980;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --hero-bg-color: rgba(184, 92, 56, 0.05);
     }
 
     * {
@@ -39,12 +76,13 @@
     }
 
     body {
-      background: var(--cream);
-      color: var(--charcoal);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Noto Sans KR', sans-serif;
       font-weight: 300;
       line-height: 1.8;
       overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
     }
 
     /* ── NAV ── */
@@ -58,9 +96,10 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 4rem;
-      background: rgba(245, 240, 232, 0.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       border-bottom: 0.5px solid var(--border);
+      transition: background var(--transition), border-color var(--transition);
     }
 
     .nav-logo {
@@ -68,14 +107,16 @@
       font-weight: 700;
       font-size: 1.1rem;
       letter-spacing: 0.05em;
-      color: var(--charcoal);
+      color: var(--text);
       text-decoration: none;
+      transition: color var(--transition);
     }
 
     .nav-links {
       display: flex;
       gap: 2.5rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -84,11 +125,72 @@
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
-      transition: color 0.25s;
+      transition: color var(--transition);
+    }
+
+    .nav-links a.active {
+      color: var(--rust);
+      font-weight: 500;
     }
 
     .nav-links a:hover {
       color: var(--rust);
+    }
+
+    /* ── SCROLL PROGRESS ── */
+    .scroll-progress-container {
+      position: fixed;
+      top: 66px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      z-index: 99;
+      background: transparent;
+    }
+
+    .scroll-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--rust);
+      transition: width 0.1s ease-out;
+    }
+
+    /* ── THEME SWITCHER ── */
+    .theme-switcher {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      background: var(--bg-dark);
+      padding: 0.25rem 0.4rem;
+      border-radius: 2rem;
+      border: 0.5px solid var(--border);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .theme-btn {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .theme-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .theme-btn.cream { background: #EDE6D6; border: 0.5px solid rgba(44, 44, 42, 0.2); }
+    .theme-btn.sage { background: #5C7A5C; }
+    .theme-btn.noir { background: #1A1A1A; }
+    
+    .theme-btn.active::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border: 1px solid var(--rust);
+      border-radius: 50%;
     }
 
     /* ── HERO ── */
@@ -109,11 +211,12 @@
       transform: translate(-50%, -50%);
       font-family: 'DM Serif Display', serif;
       font-size: clamp(8rem, 16vw, 16rem);
-      color: rgba(138, 158, 138, 0.08);
+      color: var(--hero-bg-color);
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
       letter-spacing: -0.02em;
+      transition: color var(--transition);
     }
 
     .hero-left {
@@ -197,11 +300,12 @@
     }
 
     .hero-identity-box {
-      background: var(--cream-dark);
+      background: var(--bg-dark);
       border: 0.5px solid var(--border);
       padding: 2rem;
       max-width: 320px;
       position: relative;
+      transition: background var(--transition), border-color var(--transition);
     }
 
     .identity-label {
@@ -283,7 +387,8 @@
 
     /* ── ABOUT ── */
     #about {
-      background: var(--cream-dark);
+      background: var(--bg-dark);
+      transition: background var(--transition);
     }
 
     .about-grid {
@@ -296,17 +401,19 @@
     .about-text p {
       font-size: 1rem;
       line-height: 2;
-      color: var(--charcoal-mid);
+      color: var(--text-mid);
       margin-bottom: 1.5rem;
+      transition: color var(--transition);
     }
 
     .about-text .highlight {
       font-family: 'Noto Serif KR', serif;
       font-size: 1.3rem;
-      color: var(--charcoal);
+      color: var(--text);
       font-weight: 500;
       line-height: 1.7;
       margin-bottom: 2rem;
+      transition: color var(--transition);
     }
 
     .curating-tag {
@@ -325,20 +432,44 @@
       gap: 1rem;
     }
 
+    /* Taste Card 3D Flip */
     .taste-card {
-      background: var(--cream);
+      perspective: 1000px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      height: 130px;
+      cursor: pointer;
+    }
+
+    .taste-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .taste-card:hover .taste-inner,
+    .taste-card.flipped .taste-inner {
+      transform: rotateY(180deg);
+    }
+
+    .taste-front,
+    .taste-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
       border: 0.5px solid var(--border);
       padding: 1.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      transition: background var(--transition), border-color var(--transition);
     }
 
-    .taste-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .taste-card::before {
+    .taste-front::before {
       content: '';
       position: absolute;
       left: 0;
@@ -348,7 +479,7 @@
       background: var(--sage);
     }
 
-    .taste-card.rust::before {
+    .taste-card.rust .taste-front::before {
       background: var(--rust);
     }
 
@@ -358,6 +489,7 @@
       text-transform: uppercase;
       color: var(--sage-dark);
       margin-bottom: 0.4rem;
+      transition: color var(--transition);
     }
 
     .taste-cat.rust {
@@ -369,11 +501,26 @@
       font-size: 0.9rem;
       font-weight: 500;
       line-height: 1.5;
+      color: var(--text);
+      transition: color var(--transition);
+    }
+
+    .taste-back {
+      transform: rotateY(180deg);
+      background: var(--bg-mid);
+      color: var(--text-mid);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     /* ── PROJECTS ── */
     #projects {
-      background: var(--cream);
+      background: var(--bg);
+      transition: background var(--transition);
     }
 
     .projects-list {
@@ -846,30 +993,183 @@
         gap: 3rem;
       }
 
-      footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
+    }
+
+    /* ── MOUSE GLOW BACKGROUND ── */
+    .glow-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .glow-spot {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 92, 56, 0.06) 0%, rgba(138, 158, 138, 0.03) 60%, transparent 100%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: opacity 1s ease;
+      opacity: 0;
+      mix-blend-mode: multiply;
+    }
+    
+    [data-theme="noir"] .glow-spot {
+      mix-blend-mode: screen;
+      background: radial-gradient(circle, rgba(184, 92, 56, 0.12) 0%, rgba(138, 158, 138, 0.05) 60%, transparent 100%);
+    }
+
+    /* ── CONTACT MOCK FORM ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+      background: rgba(245, 240, 232, 0.03);
+      padding: 2rem;
+      border: 0.5px solid rgba(245, 240, 232, 0.1);
+    }
+
+    [data-theme="noir"] .contact-form, 
+    [data-theme="sage"] .contact-form {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
       }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: rgba(245, 240, 232, 0.45);
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .form-input {
+      background: rgba(245, 240, 232, 0.04);
+      border: 0.5px solid rgba(245, 240, 232, 0.15);
+      padding: 0.8rem 1rem;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    
+    [data-theme="cream"] .form-input {
+      color: var(--charcoal);
+      border-color: rgba(44, 44, 42, 0.15);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--rust-light);
+      background: rgba(245, 240, 232, 0.07);
+    }
+
+    .form-submit-btn {
+      background: var(--rust);
+      color: #fff;
+      border: none;
+      padding: 0.9rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), transform 0.2s;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .form-submit-btn:hover {
+      background: var(--rust-light);
+      transform: translateY(-2px);
+    }
+
+    /* ── TOAST NOTIFICATION ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 1rem 2rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      z-index: 1000;
+      border: 0.5px solid rgba(245, 240, 232, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    [data-theme="cream"] .toast {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      color: var(--sage-light);
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="scroll-bar"></div>
+  </div>
+
   <!-- NAV -->
   <nav>
     <a href="#hero" class="nav-logo">김율</a>
     <ul class="nav-links">
-      <li><a href="#about">소개</a></li>
-      <li><a href="#projects">프로젝트</a></li>
-      <li><a href="#skills">역량</a></li>
-      <li><a href="#contact">연락</a></li>
+      <li><a href="#about" class="nav-link-item">소개</a></li>
+      <li><a href="#projects" class="nav-link-item">프로젝트</a></li>
+      <li><a href="#skills" class="nav-link-item">역량</a></li>
+      <li><a href="#contact" class="nav-link-item">연락</a></li>
+      <li>
+        <div class="theme-switcher">
+          <button class="theme-btn cream active" onclick="setTheme('cream')" title="Warm Cream 테마"></button>
+          <button class="theme-btn sage" onclick="setTheme('sage')" title="Sage Forest 테마"></button>
+          <button class="theme-btn noir" onclick="setTheme('noir')" title="Noir Charcoal 테마"></button>
+        </div>
+      </li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
+    <div class="glow-container">
+      <div class="glow-spot" id="glow-spot"></div>
+    </div>
     <div class="hero-bg-text">YUL</div>
 
     <div class="hero-left fade-up">
@@ -942,25 +1242,64 @@
       </div>
 
       <div class="taste-grid fade-up" style="transition-delay:0.15s">
-        <div class="taste-card">
-          <p class="taste-cat">Music</p>
-          <p class="taste-val">분위기 있는<br>장르들 수집 중</p>
+        <div class="taste-card" onclick="this.classList.toggle('flipped')">
+          <div class="taste-inner">
+            <div class="taste-front">
+              <p class="taste-cat">Music</p>
+              <p class="taste-val">분위기 있는<br>장르들 수집 중</p>
+            </div>
+            <div class="taste-back">
+              재즈, 시티팝, 인디 포크 등 공간의 공기를 채우는 따뜻한 소리를 좋아합니다.
+            </div>
+          </div>
         </div>
-        <div class="taste-card rust">
-          <p class="taste-cat rust">Fashion</p>
-          <p class="taste-val">힙 · 스포티<br>니치 브랜드</p>
+        
+        <div class="taste-card rust" onclick="this.classList.toggle('flipped')">
+          <div class="taste-inner">
+            <div class="taste-front">
+              <p class="taste-cat rust">Fashion</p>
+              <p class="taste-val">힙 · 스포티<br>니치 브랜드</p>
+            </div>
+            <div class="taste-back">
+              정형화되지 않은 실루엣과 브랜드 고유의 철학을 담은 독립 디자이너 레이블을 찾습니다.
+            </div>
+          </div>
         </div>
-        <div class="taste-card">
-          <p class="taste-cat">Space</p>
-          <p class="taste-val">조용한 카페<br>나만의 루틴</p>
+        
+        <div class="taste-card" onclick="this.classList.toggle('flipped')">
+          <div class="taste-inner">
+            <div class="taste-front">
+              <p class="taste-cat">Space</p>
+              <p class="taste-val">조용한 카페<br>나만의 루틴</p>
+            </div>
+            <div class="taste-back">
+              햇살이 잘 드는 구석진 나무 테이블에서 혼자 책을 읽고 기록하는 시간에 영감을 받습니다.
+            </div>
+          </div>
         </div>
-        <div class="taste-card rust">
-          <p class="taste-cat rust">Mood</p>
-          <p class="taste-val">따뜻하고<br>단단한 감각</p>
+        
+        <div class="taste-card rust" onclick="this.classList.toggle('flipped')">
+          <div class="taste-inner">
+            <div class="taste-front">
+              <p class="taste-cat rust">Mood</p>
+              <p class="taste-val">따뜻하고<br>단단한 감각</p>
+            </div>
+            <div class="taste-back">
+              부드러운 조명과 묵직한 가죽 책장처럼, 겉은 차분하지만 속은 단단한 온기를 지향합니다.
+            </div>
+          </div>
         </div>
-        <div class="taste-card" style="grid-column: span 2;">
-          <p class="taste-cat">People</p>
-          <p class="taste-val">취향이 비슷한 사람들과 느슨하고 진한 연결</p>
+        
+        <div class="taste-card" style="grid-column: span 2;" onclick="this.classList.toggle('flipped')">
+          <div class="taste-inner">
+            <div class="taste-front">
+              <p class="taste-cat">People</p>
+              <p class="taste-val">취향이 비슷한 사람들과 느슨하고 진한 연결</p>
+            </div>
+            <div class="taste-back">
+              서로의 다름을 존중하고 취향의 깊이를 인정하며, 잔잔한 영감을 주고받는 유대를 소중히 생각합니다.
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1168,33 +1507,53 @@
           "고립은 개인의 실패가 아니다."<br>
           <small style="font-size:0.75rem; opacity:0.7; font-style:normal;">— 기사평 에세이 제목 중에서</small>
         </div>
-        <p>
+        <p style="margin-bottom: 2rem;">
           학술 협업, 프로젝트 제안, 혹은 그냥 취향이 비슷한 사람으로서의 연락도 환영합니다.
         </p>
+        
+        <div class="contact-links">
+          <a href="mailto:rkarbf0226@naver.com" class="contact-link" style="margin-bottom: 1rem;">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <span class="contact-link-label">Email</span>
+              <span class="contact-link-val">rkarbf0226@naver.com</span>
+            </div>
+          </a>
+          <a href="https://github.com/yuriyuri314" class="contact-link" target="_blank" style="margin-bottom: 1rem;">
+            <div class="contact-link-icon">⌥</div>
+            <div>
+              <span class="contact-link-label">GitHub</span>
+              <span class="contact-link-val">@yuriyuri314</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/yyurixim_" class="contact-link" target="_blank">
+            <div class="contact-link-icon">◈</div>
+            <div>
+              <span class="contact-link-label">Instagram</span>
+              <span class="contact-link-val">@yyurixim_</span>
+            </div>
+          </a>
+        </div>
       </div>
 
-      <div class="contact-links fade-up" style="transition-delay:0.15s">
-        <a href="mailto:your@email.com" class="contact-link">
-          <div class="contact-link-icon">✉</div>
-          <div>
-            <span class="contact-link-label">Email</span>
-            <span class="contact-link-val">rkarbf0226@naver.com</span>
+      <div class="contact-right fade-up" style="transition-delay:0.15s">
+        <form class="contact-form" id="contact-form" onsubmit="handleContactSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="form-name">성함 *</label>
+              <input type="text" id="form-name" class="form-input" required placeholder="홍길동">
+            </div>
+            <div class="form-group">
+              <label for="form-email">이메일 *</label>
+              <input type="email" id="form-email" class="form-input" required placeholder="name@domain.com">
+            </div>
           </div>
-        </a>
-        <a href="https://github.com/" class="contact-link" target="_blank">
-          <div class="contact-link-icon">⌥</div>
-          <div>
-            <span class="contact-link-label">GitHub</span>
-            <span class="contact-link-val">@yuriyuri314</span>
+          <div class="form-group">
+            <label for="form-message">메시지 *</label>
+            <textarea id="form-message" class="form-input" rows="4" required placeholder="이야기 나누고 싶은 내용을 남겨주세요."></textarea>
           </div>
-        </a>
-        <a href="#" class="contact-link">
-          <div class="contact-link-icon">◈</div>
-          <div>
-            <span class="contact-link-label">Instagram</span>
-            <span class="contact-link-val">@yyurixim_</span>
-          </div>
-        </a>
+          <button type="submit" class="form-submit-btn">보내기 SEND</button>
+        </form>
       </div>
     </div>
   </section>
@@ -1213,6 +1572,12 @@
       <div class="overlay-header" id="overlay-header"></div>
       <div class="overlay-body" id="overlay-body"></div>
     </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <span class="toast-text" id="toast-text">메시지가 성공적으로 전송되었습니다.</span>
   </div>
 
   <script>
@@ -1352,6 +1717,116 @@
     setTimeout(() => {
       document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
     }, 100);
+
+    // ── THEME SWITCHER LOGIC ──
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      
+      // Update button active state
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.classList.contains(theme)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Load theme on startup
+    const savedTheme = localStorage.getItem('theme') || 'cream';
+    setTheme(savedTheme);
+
+    // ── SCROLL PROGRESS & SCROLLSPY ──
+    const scrollBar = document.getElementById('scroll-bar');
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link-item');
+
+    window.addEventListener('scroll', () => {
+      // 1. Progress Bar Update
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (scrollBar) {
+        scrollBar.style.width = scrolled + '%';
+      }
+
+      // 2. Scrollspy Update
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // ── INTERACTIVE MOUSE GLOW ──
+    const glowSpot = document.getElementById('glow-spot');
+    const heroSection = document.getElementById('hero');
+
+    if (glowSpot && heroSection) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glowSpot.style.left = `${x}px`;
+        glowSpot.style.top = `${y}px`;
+        glowSpot.style.opacity = '1';
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        glowSpot.style.opacity = '0';
+      });
+    }
+
+    // ── CONTACT MOCK FORM SUBMIT ──
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const message = document.getElementById('form-message').value.trim();
+
+      if (!name || !email || !message) {
+        showToast('모든 필수 항목(*)을 입력해 주세요.', true);
+        return;
+      }
+
+      // Show mock success message
+      showToast(`감사합니다, ${name}님! 메시지가 성공적으로 전송되었습니다.`);
+      
+      // Reset form
+      document.getElementById('contact-form').reset();
+    }
+
+    function showToast(text, isError = false) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      const toastIcon = toast.querySelector('.toast-icon');
+
+      toastText.textContent = text;
+      
+      if (isError) {
+        toastIcon.textContent = '✕';
+        toastIcon.style.color = 'var(--rust)';
+      } else {
+        toastIcon.textContent = '✓';
+        toastIcon.style.color = 'var(--sage-light)';
+      }
+
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
   </script>
 </body>
 
