@@ -70,19 +70,7 @@
       position: relative;
     }
 
-    /* ── HAIRLINE GRID SYSTEM ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background-image: 
-        linear-gradient(to right, var(--border-hairline) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--border-hairline) 1px, transparent 1px);
-      background-size: 8.333% 8.333vh; /* 12-column dynamic horizontal grid */
-      pointer-events: none;
-      transition: background-image var(--transition);
-    }
+
 
     /* ── NAV (Editorial Top Bar) ── */
     nav {
