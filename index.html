@@ -543,6 +543,36 @@
     margin-top: 0.15rem;
   }
 
+  .overlay-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--rust);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    transition: background 0.25s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .overlay-link-btn:hover {
+    background: var(--rust-dark);
+    transform: translateY(-2px);
+  }
+
+  .overlay-tech-stack {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--cream-dark);
+    padding: 0.4rem 0.8rem;
+    border: 0.5px solid var(--border);
+    display: inline-block;
+  }
+
   /* ── SKILLS ── */
   #skills { background: var(--cream-dark); }
 
@@ -836,25 +866,6 @@
       <span class="project-num">001</span>
       <div class="project-main">
         <div class="project-tags">
-          <span class="project-tag welfare">노인복지학</span>
-          <span class="project-tag team">정책 분석</span>
-        </div>
-        <h3 class="project-title">국민연금법 개정 비판적 고찰</h3>
-        <p class="project-desc">
-          2025년 국민연금법 개혁을 가입 범위, 형평성, 지속가능성의 세 프레임으로 분석한 사회보장 정책 보고서.
-          국회예산정책처 보고서를 근거로 제도의 구조적 한계를 짚었습니다.
-        </p>
-      </div>
-      <div class="project-right">
-        <span class="project-year">2025</span>
-        <span class="project-arrow">→</span>
-      </div>
-    </div>
-
-    <div class="project-item fade-up" onclick="openOverlay('p2')">
-      <span class="project-num">002</span>
-      <div class="project-main">
-        <div class="project-tags">
           <span class="project-tag digital">디지털인문예술</span>
           <span class="project-tag team">전시 기획</span>
         </div>
@@ -870,8 +881,8 @@
       </div>
     </div>
 
-    <div class="project-item fade-up" onclick="openOverlay('p3')">
-      <span class="project-num">003</span>
+    <div class="project-item fade-up" onclick="openOverlay('p2')">
+      <span class="project-num">002</span>
       <div class="project-main">
         <div class="project-tags">
           <span class="project-tag digital">디지털인문예술</span>
@@ -880,8 +891,7 @@
         </div>
         <h3 class="project-title">403 BYPASS — 공연 예술 접근성 앱</h3>
         <p class="project-desc">
-          공연 예술 공간의 접근성을 개선하는 모바일 웹앱. 3D 관람석 지도, AR 내비게이션,
-          실시간 혼잡도 모니터링, VR 프리뷰, AR 자막 글래스 등 7가지 핵심 기능을 기획했습니다.
+          "누구에게나 열려있는 무대를 위한 앱" — 공연 예술 공간의 접근성을 개선하는 모바일 웹앱. 3D 관람석 지도, AR 내비게이션, 실시간 혼잡도 모니터링, VR 프리뷰, AR 자막 글래스 등 7가지 핵심 기능을 기획했습니다.
         </p>
       </div>
       <div class="project-right">
@@ -890,17 +900,16 @@
       </div>
     </div>
 
-    <div class="project-item fade-up" onclick="openOverlay('p4')">
-      <span class="project-num">004</span>
+    <div class="project-item fade-up" onclick="openOverlay('p3')">
+      <span class="project-num">003</span>
       <div class="project-main">
         <div class="project-tags">
-          <span class="project-tag welfare">노인복지학</span>
-          <span class="project-tag team">학술 연구</span>
+          <span class="project-tag digital">디지털인문예술</span>
+          <span class="project-tag team">브랜드 기획</span>
         </div>
-        <h3 class="project-title">지역사회 통합 돌봄 — 노인복지 서비스 연구</h3>
+        <h3 class="project-title">ONE: 3 Moments, 1 Completion</h3>
         <p class="project-desc">
-          통계청 2023 인구 전망, 보건복지부 노인실태조사, 2024 지역사회 통합 돌봄 지원법을
-          근거로 한 지역사회 노인 돌봄 서비스 현황과 과제 분석.
+          바쁜 20~30대를 위한 하루 3끼 모듈형 뉴트리션 시스템 브랜드 기획. Morning / Noon / Night 루틴 중심 설계.
         </p>
       </div>
       <div class="project-right">
@@ -1051,19 +1060,6 @@
 <script>
 const projects = {
   p1: {
-    title: '국민연금법 개정 비판적 고찰',
-    subtitle: '2025 · 노인복지학과 · 정책 분석 보고서',
-    tags: ['노인복지학', '사회보장', '정책 분석'],
-    overview: '2025년 개정된 국민연금법을 가입 범위(Coverage), 형평성(Equity), 지속가능성(Sustainability)의 세 가지 프레임으로 분석한 학술 보고서입니다. 국회예산정책처 보고서를 주요 근거로 활용했습니다.',
-    points: [
-      '국민연금 개혁안의 주요 변경 내용 정리 및 배경 분석',
-      '가입 범위 측면 — 특수직종 근로자 사각지대 문제',
-      '형평성 측면 — 세대 간 부담 불균형과 소득 계층별 수급 차이',
-      '지속가능성 측면 — 기금 고갈 시나리오와 재정 전망',
-      'A4 5-6페이지, 4개 섹션 구성으로 완성'
-    ]
-  },
-  p2: {
     title: 'Netflix "INTO THE STORY" 몰입형 전시',
     subtitle: '2025 · 디지털인문예술 · 전시 기획',
     tags: ['전시 기획', '인터랙티브 경험', '공간 디자인'],
@@ -1076,33 +1072,35 @@ const projects = {
       '발표 스크립트 한국어로 완성'
     ]
   },
-  p3: {
+  p2: {
     title: '403 BYPASS — 공연 예술 접근성 앱',
-    subtitle: '2025 · 디지털인문예술입문 · 7인 팀 프로젝트',
+    subtitle: '2025 · 디지털인문예술 · 접근성 · 7인 팀 프로젝트',
     tags: ['UX 기획', '접근성', '모바일 웹'],
-    overview: '공연 예술 공간에서 장애인, 고령자, 외국인 등 다양한 접근성 필요를 가진 관람객을 위한 모바일 웹 애플리케이션. "403 Forbidden"에서 착안, 모든 이에게 열린 공연을 지향합니다.',
+    overview: '"누구에게나 열려있는 무대를 위한 앱"<br>공연 예술 공간에서 장애인, 고령자, 외국인 등 다양한 접근성 필요를 가진 관람객을 위한 모바일 웹 애플리케이션.',
     points: [
-      '3D 관람석 지도 — 시야각 미리보기 기능',
-      'AR 내비게이션 — 공연장 내 실내 길찾기',
-      '실시간 혼잡도 모니터링 — 대기 시간 최소화',
-      'VR 공연 프리뷰 — 사전 공간 체험',
-      '접근성 매니저 매칭 — 1:1 서포트 연결',
-      'AR 자막 글래스 — 청각장애 관람객 지원',
-      '최종 발표 PPT + .docx 프로젝트 보고서 완성'
-    ]
+      '① 3D 공연장 안내지도(S-MAP 연동)',
+      '② AR 길안내(배리어프리 경로)',
+      '③ 또타지하철 교통 연동',
+      '④ 실시간 혼잡도 확인',
+      '⑤ 360도 VR 좌석 미리보기',
+      '⑥ 접근성 매니저 매칭',
+      '⑦ AR 자막안경 연동(충무아트센터 연계)',
+      '⑧ 맞춤형 공연 추천(AI)'
+    ],
+    link: 'https://403bypass-26.vercel.app',
+    techStack: 'HTML/CSS/JS, Google AI Studio, GitHub, Vercel, S-MAP API'
   },
-  p4: {
-    title: '지역사회 통합 돌봄 — 노인복지 연구',
-    subtitle: '2025 · 노인복지학과 · 학술 연구',
-    tags: ['지역사회복지', '노인돌봄', '정책 연구'],
-    overview: '고령화 사회에서 지역사회 기반 노인 돌봄 서비스의 현황과 과제를 분석한 연구 논문. 공신력 있는 1차 자료를 근거로 서론 섹션을 포함한 학술적 글쓰기를 완성했습니다.',
+  p3: {
+    title: 'ONE: 3 Moments, 1 Completion',
+    subtitle: '2025 · 디지털인문예술 · 브랜드 기획',
+    tags: ['디지털인문예술', '브랜드 기획'],
+    overview: '바쁜 20~30대를 위한 하루 3끼 모듈형 뉴트리션 시스템 브랜드 기획. Morning(Energy·800kcal) / Noon(Balance·950kcal) / Night(Recovery·650kcal) 루틴 중심 설계.',
     points: [
-      '통계청 2023 장래인구추계 활용 — 고령화 현황 수치 근거 확보',
-      '보건복지부 2023 노인실태조사 인용 — 서비스 이용 실태 분석',
-      '2024 지역사회 통합 돌봄 지원법 분석',
-      '지역사회 통합 돌봄(커뮤니티 케어) 개념과 국내 적용 맥락 정리',
-      '서론 섹션 완성 — 연구 배경, 필요성, 연구 질문 포함'
-    ]
+      '핵심 차별점: 단순 식사 대체가 아닌 하루 루틴 중심, 직관적 모듈 시스템, AI 추천·구독·건강 데이터 확장 가능성',
+      '도구: ChatGPT(컨셉·코드 생성), Antigravity(코드 수정), GitHub(버전 관리), Vercel(배포)'
+    ],
+    link: 'https://one-brand-project-6gjd.vercel.app',
+    techStack: 'ChatGPT, Antigravity, GitHub, Vercel'
   }
 };
 
@@ -1119,14 +1117,36 @@ function openOverlay(id) {
     <p class="overlay-subtitle">${p.subtitle}</p>
   `;
 
-  body.innerHTML = `
+  let bodyContent = `
     <p class="overlay-section-label">개요</p>
     <p>${p.overview}</p>
+  `;
+
+  if (p.techStack) {
+    bodyContent += `
+      <p class="overlay-section-label">기술 스택 / 도구</p>
+      <div class="overlay-tech-stack">${p.techStack}</div>
+    `;
+  }
+
+  bodyContent += `
     <p class="overlay-section-label">주요 내용</p>
     <ul class="feature-list">
       ${p.points.map(pt => `<li>${pt}</li>`).join('')}
     </ul>
   `;
+
+  if (p.link) {
+    bodyContent += `
+      <div style="margin-top: 2rem;">
+        <a href="${p.link}" target="_blank" class="overlay-link-btn">
+          사이트 바로가기 ↗
+        </a>
+      </div>
+    `;
+  }
+
+  body.innerHTML = bodyContent;
 
   document.getElementById('overlay').classList.add('active');
   document.body.style.overflow = 'hidden';
