@@ -268,13 +268,15 @@
 
     /* ── HERO (Manifesto Archive) ── */
     #hero {
+      height: 100vh;
       min-height: 100vh;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       align-items: center;
-      padding: 8rem 4rem 4rem;
+      padding: 6.5rem 4rem 2rem;
       gap: 4rem;
       position: relative;
+      overflow: hidden;
     }
 
     .glow-container {
@@ -340,11 +342,11 @@
 
     .hero-name {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(4rem, 8vw, 7.5rem);
+      font-size: clamp(3rem, 5.2vw, 4.5rem);
       font-weight: 400;
       line-height: 0.95;
       letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       position: relative;
     }
 
@@ -358,12 +360,12 @@
 
     .hero-desc {
       font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
       font-weight: 300;
-      line-height: 1.8;
+      line-height: 1.7;
       color: var(--text);
       max-width: 580px;
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.8rem;
     }
 
     .hero-cta {
@@ -418,7 +420,7 @@
 
     .hero-profile-wrap {
       width: 100%;
-      max-width: 370px;
+      max-width: 320px;
       aspect-ratio: 3 / 4;
       border: 1px solid var(--text);
       overflow: hidden;
@@ -1502,6 +1504,9 @@
         grid-template-columns: 1fr;
         padding: 8rem 2rem 4rem;
         gap: 2.5rem;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
       }
 
       .hero-right {
