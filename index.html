@@ -975,11 +975,19 @@
       border: 1px solid var(--border-solid);
       background-color: var(--card-bg);
       padding: 2.5rem;
-      transition: border-color var(--transition);
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
     }
 
     .skill-group:hover {
       border-color: var(--text);
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(17, 17, 18, 0.08);
+    }
+
+    .skill-group:active {
+      transform: translateY(-3px) scale(0.99);
+      box-shadow: 0 8px 15px rgba(17, 17, 18, 0.05);
     }
 
     .skill-group-label {
