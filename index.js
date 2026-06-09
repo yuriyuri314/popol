@@ -43,7 +43,7 @@ const projects = {
     tags: ['디지털인문예술', '브랜드 기획'],
     overview: '바쁜 20~30대를 위한 하루 3끼 모듈형 뉴트리션 시스템 브랜드 기획. Morning(Energy·800kcal) / Noon(Balance·950kcal) / Night(Recovery·650kcal) 루틴 중심 설계.',
     img: 'p3.jpg',
-    color: '#A75C4C',
+    color: '#b6b0ab',
     links: [
       { url: 'https://one-brand-project.vercel.app', text: '브랜드 사이트 보기 ↗' },
       { url: 'https://docs.google.com/presentation/d/1yvmL_FArPdFwLSxhlEYWuoprnsOKLwjlBV_ikB9YX1k/edit?usp=sharing', text: '기획 PPT 보기 ↗' }
@@ -60,7 +60,7 @@ const projects = {
     tags: ['노인복지학', '학술 연구'],
     overview: '고령화 사회에서 지역사회 기반 노인 돌봄 서비스의 현황과 과제를 분석한 연구 논문. 통계청 2023 장래인구추계, 보건복지부 2023 노인실태조사, 2024 지역사회 통합 돌봄 지원법을 근거로 작성되었습니다.',
     img: 'p4.png',
-    color: '#D8C3A5',
+    color: '#f3cf9cff',
     link: 'https://docs.google.com/document/d/1Obv12UPQItmRnqRchwwwwhRGtsDYrSB4Gb8CDnBshJo/edit?usp=sharing',
     linkText: '연구 계획서 문서 보기 ↗',
     points: [
