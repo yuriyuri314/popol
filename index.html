@@ -754,12 +754,26 @@
 
     .project-item {
       display: grid;
-      grid-template-columns: 80px 2fr 1fr;
+      grid-template-columns: 70px 45px 2fr 1fr;
       align-items: center;
       padding: 3rem 1.5rem;
       cursor: pointer;
       transition: background-color var(--transition);
       position: relative;
+    }
+
+    .project-color-block {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      border: 1px solid var(--border-hairline);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .project-item:hover .project-color-block {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0 4px 12px rgba(17, 17, 18, 0.15);
     }
 
     .project-item:hover {
@@ -1012,10 +1026,25 @@
       margin-bottom: 0;
     }
 
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+
     .skill-name {
       font-size: 0.9rem;
-      font-weight: 400;
+      font-weight: 500;
       color: var(--text);
+    }
+
+    .skill-evidence {
+      font-size: 0.75rem;
+      color: var(--text);
+      opacity: 0.6;
+      font-weight: 300;
+      font-family: 'Noto Sans KR', sans-serif;
     }
 
     .skill-bar-track {
@@ -1538,8 +1567,25 @@
       }
 
       .project-item {
-        grid-template-columns: 50px 1.5fr 100px;
+        grid-template-columns: 40px 35px 1.5fr 70px;
         padding: 2rem 0.5rem;
+      }
+
+      .project-color-block {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+      }
+
+      .skill-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+      }
+
+      .skill-evidence {
+        font-size: 0.7rem;
+        opacity: 0.55;
       }
 
       .project-item .project-desc {
@@ -2058,73 +2104,80 @@
           <a href="https://instagram.com/yyurixim_" class="contact-link" target="_blank">
             <div class="contact-link-icon">◈</div>
             <div>
-              <span class="contact-link-label">Instagram</span>
-              <span class="contact-link-val">@yyurixim_</span>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <!-- Digital Postcard Layout Form -->
-      <div class="contact-right fade-up" style="transition-delay:0.15s">
-        <div class="postcard-container">
-          <div class="postcard-stamp">Postage<br>Stamp</div>
-          <div class="postcard-header">Digital Postcard</div>
-          <form class="postcard-form" id="contact-form" onsubmit="handleContactSubmit(event)">
-            <div class="postcard-row">
-              <div class="postcard-group">
-                <label for="form-name">성함 *</label>
-                <input type="text" id="form-name" class="postcard-input" required placeholder="홍길동">
-              </div>
-              <div class="postcard-group">
-                <label for="form-email">이메일 *</label>
-                <input type="email" id="form-email" class="postcard-input" required placeholder="name@domain.com">
-              </div>
-            </div>
-            <div class="postcard-group" style="margin-top: 1.5rem;">
-              <label for="form-message">메시지 *</label>
-              <textarea id="form-message" class="postcard-input postcard-textarea" required
-                placeholder="이야기 나누고 싶은 내용을 남겨주세요."></textarea>
-            </div>
-            <button type="submit" class="postcard-submit-btn">보내기 SEND</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span>Yuri Kim PORTFOLIO © 2026</span>
-    <span>노인복지학과 + 디지털인문예술 · 학번 20232316</span>
-    <span>CURATING ME</span>
-  </footer>
-
-  <!-- PROJECT OVERLAYS (Immersive Sheet) -->
-  <div class="overlay" id="overlay" onclick="closeOverlay(event)">
-    <div class="overlay-card" id="overlay-card">
-      <button class="overlay-close" onclick="closeOverlay()">✕</button>
-      <div class="overlay-header" id="overlay-header"></div>
-      <div class="overlay-body" id="overlay-body"></div>
-    </div>
-  </div>
-
-  <!-- TOAST NOTIFICATION -->
-  <div class="toast" id="toast">
-    <span class="toast-icon">✓</span>
-    <span class="toast-text" id="toast-text">메시지가 성공적으로 전송되었습니다.</span>
-  </div>
-
-  <script>
-    const projects = {
+              <span class="contact-link-label">Insta    const projects = {
       p1: {
         title: 'Netflix "INTO THE STORY" 몰입형 전시',
         subtitle: '2026 · 디지털인문예술 · 전시 기획',
         tags: ['전시 기획', '인터랙티브 경험', '공간 디자인'],
         overview: 'Netflix 오리지널 콘텐츠의 세계관을 오프라인 공간으로 확장하는 몰입형 체험 전시 콘셉트. 관람객이 이야기 속 주인공이 되는 경험을 설계했습니다.',
         img: 'p1.png',
-        link: 'https://docs.google.com/presentation/d/1thoET1xeuR-SoqGBWBOTnIJ8EmuZWKzDOhuniCkLWuU/edit?usp=sharing',
+        color: '#8B1E0F',
+        link: 'https://docs.google.com/presentation/d/1thoET1xeuR-SoqGBWBOTnIJ8EmuZWKzDOhuniCkLwU/edit?usp=sharing',
         linkText: '발표 PPT 보기 ↗',
+        points: [
+          '10개 슬라이드, 10분 발표 형식으로 기획안 완성',
+          '전시 포스터 디자인 — 여러 차례 이터레이션 진행',
+          'Tate Modern, Cooper Hewitt 방문 경험을 레퍼런스로 활용',
+          '공간 동선 설계 및 인터랙션 시나리오 작성',
+          '발표 스크립트 한국어로 완성'
+        ]
+      },
+      p2: {
+        title: '403 BYPASS — 공연 예술 접근성 앱',
+        subtitle: '2026 · 디지털인문예술 · 접근성 · 7인 팀 프로젝트',
+        tags: ['UX 기획', '접근성', '모바일 웹'],
+        overview: '"누구에게나 열려있는 무대를 위한 앱"<br>공연 예술 공간에서 장애인, 고령자, 외국인 등 다양한 접근성 필요를 가진 관람객을 위한 모바일 웹 애플리케이션.',
+        img: 'p2.png',
+        color: '#5C7A5C',
+        link: 'https://popol-bypass.vercel.app',
+        linkText: '서비스 바로가기 ↗',
+        techStack: 'HTML/CSS/JS, Google AI Studio, GitHub, Vercel, S-MAP API',
+        points: [
+          '① 3D 공연장 안내지도(S-MAP 연동)',
+          '② AR 길안내(배리어프리 경로)',
+          '③ 또타지하철 교통 연동',
+          '④ 실시간 혼잡도 확인',
+          '⑤ 360도 VR 좌석 미리보기',
+          '⑥ 접근성 매니저 매칭',
+          '⑦ AR 자막안경 연동(충무아트센터 연계)',
+          '⑧ 맞춤형 공연 추천(AI)'
+        ]
+      },
+      p3: {
+        title: 'ONE: 3 Moments, 1 Completion',
+        subtitle: '2026 · 디지털인문예술 · 브랜드 기획',
+        tags: ['디지털인문예술', '브랜드 기획'],
+        overview: '바쁜 20~30대를 위한 하루 3끼 모듈형 뉴트리션 시스템 브랜드 기획. Morning(Energy·800kcal) / Noon(Balance·950kcal) / Night(Recovery·650kcal) 루틴 중심 설계.',
+        img: 'p3.jpg',
+        color: '#A75C4C',
+        links: [
+          { url: 'https://one-brand-project-6gjd.vercel.app', text: '브랜드 사이트 보기 ↗' },
+          { url: 'https://docs.google.com/presentation/d/1yvmL_FArPdFwLSxhlEYWuoprnsOKLwjlBV_ikB9YX1k/edit?usp=sharing', text: '기획 PPT 보기 ↗' }
+        ],
+        techStack: 'ChatGPT, Antigravity, GitHub, Vercel',
+        points: [
+          '핵심 차별점: 단순 식사 대체가 아닌 하루 루틴 중심, 직관적 모듈 시스템, AI 추천·구독·건강 데이터 확장 가능성',
+          '도구: ChatGPT(컨셉·코드 생성), Antigravity(코드 수정), GitHub(버전 관리), Vercel(배포)'
+        ]
+      },
+      p4: {
+        title: '지역사회 통합 돌봄 — 노인복지 서비스 연구',
+        subtitle: '2026 · 노인복지학 · 학술 연구',
+        tags: ['노인복지학', '학술 연구'],
+        overview: '고령화 사회에서 지역사회 기반 노인 돌봄 서비스의 현황과 과제를 분석한 연구 논문. 통계청 2023 장래인구추계, 보건복지부 2023 노인실태조사, 2024 지역사회 통합 돌봄 지원법을 근거로 작성되었습니다.',
+        img: 'p4.png',
+        color: '#D8C3A5',
+        link: 'https://docs.google.com/document/d/1Obv12UPQItmRnqRchwwwwhRGtsDYrSB4Gb8CDnBshJo/edit?usp=sharing',
+        linkText: '연구 계획서 문서 보기 ↗',
+        points: [
+          '통계청 2023 장래인구추계 활용 — 고령화 현황 수치 근거 확보',
+          '보건복지부 2023 노인실태조사 인용 — 서비스 이용 실태 분석',
+          '2024 지역사회 통합 돌봄 지원법 분석',
+          '지역사회 통합 돌봄(커뮤니티 케어) 개념과 국내 적용 맥락 정리',
+          '서론 섹션 완성 — 연구 배경, 필요성, 연구 질문 포함'
+        ]
+      }
+    };��표 PPT 보기 ↗',
         points: [
           '10개 슬라이드, 10분 발표 형식으로 기획안 완성',
           '전시 포스터 디자인 — 여러 차례 이터레이션 진행',
