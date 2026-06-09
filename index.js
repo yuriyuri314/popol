@@ -22,7 +22,7 @@ const projects = {
     tags: ['UX 기획', '접근성', '모바일 웹'],
     overview: '"누구에게나 열려있는 무대를 위한 앱"<br>공연 예술 공간에서 장애인, 고령자, 외국인 등 다양한 접근성 필요를 가진 관람객을 위한 모바일 웹 애플리케이션.',
     img: 'p2.png',
-    color: '#5C7A5C',
+    color: '#11c2ef',
     link: 'https://403bypass-26.vercel.app',
     linkText: '서비스 바로가기 ↗',
     techStack: 'HTML/CSS/JS, Google AI Studio, GitHub, Vercel, S-MAP API',
